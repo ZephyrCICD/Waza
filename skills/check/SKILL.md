@@ -143,6 +143,7 @@ Drift signals (examples, not exhaustive -- any one is enough to label drift):
 - A new dependency appears that the goal did not mention
 - Code unrelated to the goal was deleted or commented out
 - A new abstraction or helper was introduced that is not required by the goal
+- A maintainability, review, or cleanup change quietly adds user-visible UI, default config, workflow permissions, or release behavior
 
 ## Pattern-Fix Completeness
 
