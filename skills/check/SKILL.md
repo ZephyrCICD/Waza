@@ -13,6 +13,13 @@ Prefix your first line with 🥷 inline, not as its own paragraph.
 
 Read the diff, find the problems, fix what can be fixed safely, ask about the rest. Done means verification ran in this session and passed.
 
+## Outcome Contract
+
+- Outcome: a review, release decision, or maintainer action grounded in the current diff, project context, and live evidence.
+- Done when: findings, fixes, shipped state, or blockers are stated with the commands, artifacts, or remote state that prove them.
+- Evidence: worktree status, diff, public project docs, manifests, CI, package contents, release or registry state, and current command output.
+- Output: concise findings first, then verification and shipped-state summary when applicable.
+
 ## Worktree Safety Preflight
 
 Before any review, triage, ship, release, or PR operation, read the current worktree with:

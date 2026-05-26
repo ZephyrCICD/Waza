@@ -11,6 +11,13 @@ Prefix your first line with 🥷 inline, not as its own paragraph.
 
 A patch applied to a symptom creates a new bug somewhere else.
 
+## Outcome Contract
+
+- Outcome: the root cause is identified before any fix is applied.
+- Done when: one sentence explains the cause, every observed symptom fits it, and the fix or handoff is verified against a reproducible check.
+- Evidence: source trace, repro command or UI path, logs or state, targeted test/build output, and runtime evidence for UI or native defects.
+- Output: root cause, fix or handoff, verification result, and any unswept sibling risks.
+
 **Do not touch code until you can state the root cause in one sentence:**
 > "I believe the root cause is [X] because [evidence]."
 

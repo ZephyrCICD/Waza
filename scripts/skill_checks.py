@@ -41,6 +41,7 @@ FORCED_GITHUB_TOOL_RE = re.compile(
 DURABLE_CONTEXT_SKILLS = {"think", "check", "hunt", "design", "write", "health"}
 
 NINJA_PREFIX = "Prefix your first line with 🥷 inline, not as its own paragraph."
+OUTCOME_CONTRACT_FIELDS = ("Outcome:", "Done when:", "Evidence:", "Output:")
 
 # Attribution strings that indicate AI co-authorship leaked into tracked files.
 ATTRIBUTION_PATTERNS = (
@@ -236,6 +237,26 @@ def check_description_conformance(skill_descriptions: dict[str, str]):
                 f"  Must contain a 'Not for ...' clause so the resolver learns when NOT to fire. Got: {clean[:120]!r}"
             )
         print(f"ok: description {skill} ({length} chars)")
+
+
+def check_outcome_contract(skill_files: list[Path]):
+    """Keep skill entrypoints outcome-first instead of process-heavy."""
+    for path in skill_files:
+        text = path.read_text()
+        if "## Outcome Contract" not in text:
+            fail(
+                f"MISSING OUTCOME CONTRACT: {path}\n"
+                f"  Skill entrypoints must name outcome, done state, evidence, and output before detailed workflow."
+            )
+        section = text.split("## Outcome Contract", 1)[1]
+        section = section.split("\n## ", 1)[0]
+        missing = [field for field in OUTCOME_CONTRACT_FIELDS if field not in section]
+        if missing:
+            fail(
+                f"INCOMPLETE OUTCOME CONTRACT: {path}\n"
+                f"  Missing fields: {', '.join(missing)}"
+            )
+        print(f"ok: outcome contract {path.parent.name}")
 
 
 def check_durable_context_and_paths(root: Path, skill_files: list[Path]):

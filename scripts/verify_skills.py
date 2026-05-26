@@ -30,6 +30,7 @@ from skill_checks import (  # noqa: E402
     check_marketplace,
     check_markdown_links,
     check_no_root_skill,
+    check_outcome_contract,
     check_portable_skill_surface,
     check_readme_install_command,
     check_references,
@@ -66,6 +67,7 @@ def main() -> int:
     skill_files, skill_descriptions, skill_keywords = check_skill_files(root)
     skill_names = set(skill_descriptions)
     check_description_conformance(skill_descriptions)
+    check_outcome_contract(skill_files)
     if (root / "rules" / "durable-context.md").exists():
         check_durable_context_and_paths(root, skill_files)
 

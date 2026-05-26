@@ -14,6 +14,13 @@ Audit the current project's agent setup and AI coding maintainability against th
 
 Find violations. Identify the misaligned layer. Calibrate to project complexity only.
 
+## Outcome Contract
+
+- Outcome: a budget-aware health report that separates agent configuration risk from AI maintainability risk.
+- Done when: each finding names the misaligned layer, the concrete evidence, and a copy-pasteable action or diagnostic command.
+- Evidence: collected health script output, tracked project instructions, runtime config summaries, verifier logs, hooks/MCP surfaces, and live probes when needed.
+- Output: prioritized findings with status, impact, and next action, or a clear clean bill with residual risk.
+
 Two lanes share one report:
 
 - **Agent config health**: Codex/Claude/Pi instruction drift, permissions, hooks, MCP, skills, and memory supply chain.

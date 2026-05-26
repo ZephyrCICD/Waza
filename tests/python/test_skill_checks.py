@@ -9,6 +9,7 @@ import pytest
 
 from skill_checks import (
     check_description_conformance,
+    check_outcome_contract,
     check_portable_skill_surface,
     check_trigger_overlap,
     pipe_count,
@@ -82,6 +83,44 @@ def test_description_starting_with_article_rejected(capsys):
             {"x": "The skill does things. Not for everything else."}
         )
     assert "STARTS WITH ARTICLE" in capsys.readouterr().err
+
+
+# ---- check_outcome_contract ----------------------------------------------
+
+
+def test_outcome_contract_happy_path(tmp_path, capsys):
+    path = tmp_path / "skills" / "check" / "SKILL.md"
+    path.parent.mkdir(parents=True)
+    path.write_text(
+        "## Outcome Contract\n\n"
+        "- Outcome: review the change.\n"
+        "- Done when: evidence supports the conclusion.\n"
+        "- Evidence: diff, tests, and release state.\n"
+        "- Output: concise sign-off.\n"
+    )
+
+    check_outcome_contract([path])
+    assert "ok: outcome contract check" in capsys.readouterr().out
+
+
+def test_outcome_contract_missing_section_rejected(tmp_path, capsys):
+    path = tmp_path / "skills" / "check" / "SKILL.md"
+    path.parent.mkdir(parents=True)
+    path.write_text("## Flow\n\n1. Do many steps.\n")
+
+    with pytest.raises(SystemExit):
+        check_outcome_contract([path])
+    assert "MISSING OUTCOME CONTRACT" in capsys.readouterr().err
+
+
+def test_outcome_contract_missing_field_rejected(tmp_path, capsys):
+    path = tmp_path / "skills" / "check" / "SKILL.md"
+    path.parent.mkdir(parents=True)
+    path.write_text("## Outcome Contract\n\n- Outcome: review the change.\n")
+
+    with pytest.raises(SystemExit):
+        check_outcome_contract([path])
+    assert "INCOMPLETE OUTCOME CONTRACT" in capsys.readouterr().err
 
 
 # ---- check_trigger_overlap ------------------------------------------------

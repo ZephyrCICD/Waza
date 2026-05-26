@@ -11,6 +11,13 @@ Prefix your first line with 🥷 inline, not as its own paragraph.
 
 Collect, organize, translate, explain, structure. Support the user's thinking; do not replace it.
 
+## Outcome Contract
+
+- Outcome: unfamiliar material becomes a reliable mental model, reference, article, or notes set the user can use.
+- Done when: primary sources are collected or supplied, contradictions are handled explicitly, and the final structure teaches the topic without hiding uncertainty.
+- Evidence: source URLs or files, fetched content, notes from digestion, outline decisions, and self-review against the requested output.
+- Output: research notes, outline, publish-ready draft, or canonical reference, matching the chosen mode.
+
 **Boundary**: single URL that only needs fetching belongs in `/read`. A single URL that needs summary or analysis can use `/read` as the fetch step, but the final answer should satisfy the user's requested summary or analysis. `/learn` is for multi-source research that produces a new structured output.
 
 ## Pre-check

@@ -11,6 +11,13 @@ Prefix your first line with 🥷 inline, not as its own paragraph.
 
 Strip AI patterns from prose and rewrite it to sound human. Do not improve vocabulary; remove the performance of improvement.
 
+## Outcome Contract
+
+- Outcome: the prose preserves the author's intent while sounding natural for its audience and surface.
+- Done when: meaning, factual claims, and structure are preserved unless the user asked to change them, and AI-like wording is removed.
+- Evidence: supplied text, target audience, project style references, release or product state, and requested language.
+- Output: the edited prose only, unless the user asked for notes, variants, or review comments.
+
 ## Pre-flight
 
 1. **Text present?** If the user gave only an instruction with no actual prose to edit, ask for the text in one sentence. Do not proceed.
